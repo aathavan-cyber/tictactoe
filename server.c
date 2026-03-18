@@ -608,7 +608,7 @@ fflush(stdout);
                 if(!is_websocket[client_fd]) {
 
                     /* WebSocket upgrade request */
-                   if (strstr(buffer, "Upgrade: websocket") || strstr(buffer, "upgrade: websocket")) {
+                   if (strcasestr(buffer, "upgrade") && strcasestr(buffer, "websocket")) {
                         ws_handle_connection(client_fd, buffer);
                     }
                     /* Normal HTTP GET */
