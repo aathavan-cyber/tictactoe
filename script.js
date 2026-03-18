@@ -24,18 +24,16 @@ let gameActive = false;
 function connect() {
 
     // connect to server
-    socket = new WebSocket(
-    (window.location.protocol === "https:" ? "wss://" : "ws://") +
-    window.location.host
-);
+   const protocol = window.location.protocol === "https:" ? "wss://" : "ws://";
+    const host = window.location.host;
+    
+    console.log("Attempting connection to:", protocol + host);
+    socket = new WebSocket(protocol + host);
 
-    // when connection opens
-   socket.onopen = () => {
-    console.log("WebSocket connected");
-    statusDiv.textContent = "Connected. Waiting for opponent...";
-    turnDiv.textContent = "";
-    restartBtn.style.display = "none";
-};
+    socket.onopen = () => {
+        console.log("Connected successfully!");
+        statusDiv.textContent = "Connected. Waiting for opponent...";
+    };
 
 socket.onerror = (e) => {
     console.log("WebSocket error", e);

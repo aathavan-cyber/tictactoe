@@ -381,6 +381,7 @@ int websocket_handshake(int client_fd, char *request){
     /*
     Find "Sec-WebSocket-Key" header inside HTTP request.
     */
+    printf("Handshake triggered!\n");
     char *key=strstr(request,"Sec-WebSocket-Key:");
     if(!key) return -1;
 
